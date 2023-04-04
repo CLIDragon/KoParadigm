@@ -158,11 +158,13 @@ class Paradigm(object):
                 li_ending_and_form = []
                 rules = self.verb_class2rules[verb_class]
                 for ending_class, rule in rules:
+                    if rule == "":
+                        continue
+
                     endings = self.ending_class2endings[ending_class]
                     for ending in endings:
                         form = self.combine(verb=verb, ending=ending, rule=rule)
-                        if len(form) > 0:
-                            li_ending_and_form.append((ending, form))
+                        li_ending_and_form.append((ending, form))
 
                 paradigms.append([pos, li_ending_and_form])
             return paradigms
